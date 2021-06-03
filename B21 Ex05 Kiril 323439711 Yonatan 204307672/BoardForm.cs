@@ -55,7 +55,7 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             //Players score
             this.m_LabelPlayer1Name.Text = "Player 1:";
             this.m_LabelPlayer1Name.AutoSize = true;
-            this.m_LabelPlayer1Name.Location = new Point(this.Width / 2 - this.m_LabelPlayer1Name.Width, this.Bottom - 50);
+            this.m_LabelPlayer1Name.Location = new Point(this.Width / 2 - this.m_LabelPlayer1Name.Width/2 - 10, this.Bottom - 50);
             this.Controls.Add(this.m_LabelPlayer1Name);
 
             this.m_Score1.Text = "0";
@@ -65,7 +65,14 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
 
             //Depends on game mode
             this.m_LabelPlayer2Name.Text = "Player 2:";
+            this.m_LabelPlayer2Name.AutoSize = true;
+            this.m_LabelPlayer2Name.Location = new Point(this.m_Score1.Right + 2, this.m_LabelPlayer1Name.Top);
+            this.Controls.Add(this.m_LabelPlayer2Name);
+
             this.m_Score2.Text = "0";
+            this.m_Score2.AutoSize = true;
+            this.m_Score2.Location = new Point(this.m_LabelPlayer2Name.Right, this.m_LabelPlayer1Name.Top);
+            this.Controls.Add(this.m_Score2);
 
             this.ShowDialog();
         }
@@ -77,8 +84,28 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             this.m_GameBoard[pressedButtonIndex[0], pressedButtonIndex[1]].Enabled = false; //Disabled after being taken
 
             //Should listener be removed if button is disabled? 
-            string output = string.Format(@"Pressed button at ({0},{1})", pressedButtonIndex[0], pressedButtonIndex[1]);
-            MessageBox.Show(output, "Debug", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //string output = string.Format(@"Pressed button at ({0},{1})", pressedButtonIndex[0], pressedButtonIndex[1]);
+            //MessageBox.Show(output, "Debug", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            gameOverWin();
+        }
+
+        private void gameOverWin()
+        {
+            //Should receive the winner as an enum/string
+            string tempWinner = "Kiril";
+            string output = string.Format("The winner is {0}!" + Environment.NewLine + "Would you like to play another round?", tempWinner);
+            DialogResult gameOverDialogResult = MessageBox.Show(output, "A Win!", MessageBoxButtons.YesNo);
+
+            if(gameOverDialogResult == DialogResult.Yes)
+            {
+                //Play again, with the same settings
+            }
+            else
+            {
+                //Open game settings menu
+                new GameSettingsForm().ShowDialog();
+                this.Close();
+            }
         }
     }
 }

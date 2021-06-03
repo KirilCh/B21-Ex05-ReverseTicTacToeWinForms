@@ -115,6 +115,7 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             {
                 int o_boardSize = Convert.ToInt32(Math.Round(m_NumercUpDownRows.Value, 0));
                 new BoardForm(o_boardSize);
+                this.Close();
             }
             else
             {
