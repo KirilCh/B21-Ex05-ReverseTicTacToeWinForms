@@ -14,3 +14,6 @@ C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril
 C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\WindowsUI.csproj.CoreCompileInputs.cache
 C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21 Ex05 Kiril 323439711 Yonatan 204307672.exe
 C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21 Ex05 Kiril 323439711 Yonatan 204307672.pdb
+C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\bin\Debug\GameLogic.dll
+C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\bin\Debug\GameLogic.pdb
+C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\WindowsUI.csproj.CopyComplete

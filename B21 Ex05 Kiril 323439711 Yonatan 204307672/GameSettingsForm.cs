@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using GameLogic;
 
 namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
 {
@@ -24,6 +25,8 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
         NumericUpDown m_NumercUpDownColumns = new NumericUpDown();
 
         Button m_ButtonStartGame = new Button();
+
+        GamePlay.ePlayingVersus m_PlayingVs = GamePlay.ePlayingVersus.Computer; //Default option
 
         public GameSettingsForm()
         {
@@ -104,6 +107,9 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
         private void m_CheckBoxPlayer2_StateChanged(object sender, EventArgs e)
         {
             m_TextBoxPlayer2Name.Enabled = m_CheckBoxPlayer2.Checked;
+
+            //Playing against selection
+            m_PlayingVs = m_CheckBoxPlayer2.Checked ? GamePlay.ePlayingVersus.Player : GamePlay.ePlayingVersus.Computer;
         }
 
         private void m_ButtonStartGame_Clicked(object sender, EventArgs e)
@@ -114,8 +120,9 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             if (rows == cols)
             {
                 int o_boardSize = Convert.ToInt32(Math.Round(m_NumercUpDownRows.Value, 0));
-                new BoardForm(o_boardSize);
-                this.Close();
+                this.Hide();
+                new BoardForm(o_boardSize, this.m_TextBoxPlayer1Name.Text,m_PlayingVs ,this.m_TextBoxPlayer2Name.Text);
+                //this.Show();
             }
             else
             {
