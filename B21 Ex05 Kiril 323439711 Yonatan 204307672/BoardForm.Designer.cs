@@ -29,10 +29,17 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // BoardForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1006, 575);
+            this.Name = "BoardForm";
             this.Text = "BoardForm";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

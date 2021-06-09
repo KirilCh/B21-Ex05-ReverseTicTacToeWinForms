@@ -32,9 +32,10 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
         private GamePlay.eWhosTurn m_WhosTurn = GamePlay.eWhosTurn.Player1;
         //private Board.eIcons m_CurrentIcon = Board.eIcons.X;
 
-        public BoardForm(int i_BoardSize, string i_Player1Name, GamePlay.ePlayingVersus i_PlayingVs, string i_Player2Name)
+        public BoardForm(int i_BoardSize, string i_Player1Name, GamePlay.ePlayingVersus i_PlayingVs, string i_Player2Name )
         {
             m_Board = new Board(i_BoardSize);
+            
             m_GamePlay = new GamePlay(m_Board, (int)i_PlayingVs);
             m_PlayingVersus = i_PlayingVs;
 
@@ -134,9 +135,9 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
                 {
                     this.gameOverTie();
                 }
-                /*if (this.m_Board.IsBoardFull() == true)
+                if (this.m_Board.IsBoardFull() == true)
                 {
-                    if(this.m_Board.IsWinner == true)
+                    if (this.m_Board.IsWinner == true)
                     {
 
                     }
@@ -145,7 +146,7 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
                 else
                 {
                     this.gameOverWin();
-                }    */
+                }
             }
            
         }
@@ -169,15 +170,15 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             if(gameOverDialogResult == DialogResult.Yes)
             {
                 //Play again, with the same settings
-                this.Hide();
-                
+                this.Dispose();
                 new BoardForm(m_BoardSize, m_LabelPlayer1Name.Text, m_PlayingVersus, m_LabelPlayer2Name.Text).Show();
             }
             else
             {
                 //Open game settings menu
-                this.Hide();
-                new GameSettingsForm().ShowDialog();
+                this.Dispose();
+                new FormGameSettings().ShowDialog();
+                //new GameSettingsForm().ShowDialog();
             }
         }
 
@@ -189,14 +190,19 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             if (gameOverDialogResult == DialogResult.Yes)
             {
                 //Play again, with the same settings
-                this.Hide();
+                //this.Hide();
+                this.Dispose();
+                //this.Close();
                 new BoardForm(m_BoardSize, m_LabelPlayer1Name.Text, m_PlayingVersus, m_LabelPlayer2Name.Text).Show();
             }
             else
             {
                 //Open game settings menu
-                this.Hide();
-                new GameSettingsForm().ShowDialog();
+                //this.Hide();
+                this.Dispose();
+                //this.Close();
+                new FormGameSettings().ShowDialog();
+                //new GameSettingsForm().ShowDialog();
             }
         }
 
@@ -235,4 +241,6 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             GameOver();
         }
     }
+    
+     
 }

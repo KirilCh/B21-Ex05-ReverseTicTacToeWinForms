@@ -17,3 +17,16 @@ C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril
 C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\bin\Debug\GameLogic.dll
 C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\bin\Debug\GameLogic.pdb
 C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\WindowsUI.csproj.CopyComplete
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\bin\Debug\B21 Ex05 Kiril 323439711 Yonatan 204307672.exe
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\bin\Debug\B21 Ex05 Kiril 323439711 Yonatan 204307672.pdb
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\bin\Debug\GameLogic.dll
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\bin\Debug\GameLogic.pdb
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\WindowsUI.csprojAssemblyReference.cache
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21_Ex05_Kiril_323439711_Yonatan_204307672.Properties.Resources.resources
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\WindowsUI.csproj.GenerateResource.cache
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\WindowsUI.csproj.CoreCompileInputs.cache
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\WindowsUI.csproj.CopyComplete
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21 Ex05 Kiril 323439711 Yonatan 204307672.exe
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21 Ex05 Kiril 323439711 Yonatan 204307672.pdb
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21_Ex05_Kiril_323439711_Yonatan_204307672.FormGameSettings.resources
+C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21_Ex05_Kiril_323439711_Yonatan_204307672.BoardForm.resources
