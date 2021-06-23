@@ -16,6 +16,7 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
         public FormGameSettings()
         {
             InitializeComponent();
+            this.Parent = null;
         }
 
         private void m_CheckBoxPlayer2_CheckedChanged(object sender, EventArgs e)
@@ -35,9 +36,18 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             {
                 int o_boardSize = Convert.ToInt32(Math.Round(m_NumercUpDownRows.Value, 0));
                 //this.Hide();
-                //this.Close();
+                //
+                String Player1Name = this.m_TextBoxPlayer1Name.Text;
+                GamePlay.ePlayingVersus PlayingVs = m_PlayingVs;
+                String Player2Name = this.m_TextBoxPlayer2Name.Text;
+                this.Close();
                 this.Dispose();
-                new BoardForm(o_boardSize, this.m_TextBoxPlayer1Name.Text, m_PlayingVs, this.m_TextBoxPlayer2Name.Text);
+                new BoardForm(o_boardSize, Player1Name, PlayingVs, Player2Name);
+
+
+/*                new BoardForm(o_boardSize, this.m_TextBoxPlayer1Name.Text, m_PlayingVs, this.m_TextBoxPlayer2Name.Text);
+                this.Close();
+                this.Dispose();*/
                 //this.Show();
             }
             else

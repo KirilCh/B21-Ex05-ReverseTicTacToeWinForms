@@ -46,7 +46,6 @@
     <Compile Include="BoardForm.Designer.cs">
       <DependentUpon>BoardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="FormGameSettings.cs">
       <SubType>Form</SubType>
     </Compile>

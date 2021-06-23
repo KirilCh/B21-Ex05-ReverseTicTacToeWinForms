@@ -23,6 +23,9 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
         private Label m_LabelPlayer2Name = new Label();
         private Label m_Score2 = new Label();
 
+        private String m_PlayerOneName;
+        private String m_PlayerTwoName;
+
         private GamePlay m_GamePlay;
         private Board m_Board;
 
@@ -38,6 +41,9 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             
             m_GamePlay = new GamePlay(m_Board, (int)i_PlayingVs);
             m_PlayingVersus = i_PlayingVs;
+
+            m_PlayerOneName = i_Player1Name;
+            m_PlayerTwoName = i_Player2Name;
 
             int frameWidth, frameHeight;
             m_BoardSize = i_BoardSize;
@@ -73,24 +79,24 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             this.Controls.AddRange(m_GameBoardControls);
 
             //Players score
-            this.m_LabelPlayer1Name.Text = i_Player1Name + ": ";
+            this.m_LabelPlayer1Name.Text = m_PlayerOneName + ": ";
             this.m_LabelPlayer1Name.Font = new Font(Label.DefaultFont, FontStyle.Bold);
             this.m_LabelPlayer1Name.AutoSize = true;
             this.m_LabelPlayer1Name.Location = new Point(this.Width / 2 - this.m_LabelPlayer1Name.Width/2 - 10, this.Bottom - 50);
             this.Controls.Add(this.m_LabelPlayer1Name);
 
-            this.m_Score1.Text = "0";
+            this.m_Score1.Text = GamePlay.FirstPlayerScore.ToString();
             this.m_Score1.AutoSize = true;
             this.m_Score1.Location = new Point(this.m_LabelPlayer1Name.Right, this.m_LabelPlayer1Name.Top);
             this.Controls.Add(this.m_Score1);
 
             //Depends on game mode
-            this.m_LabelPlayer2Name.Text = i_Player2Name;
+            this.m_LabelPlayer2Name.Text = m_PlayerTwoName + ": ";
             this.m_LabelPlayer2Name.AutoSize = true;
             this.m_LabelPlayer2Name.Location = new Point(this.m_Score1.Right + 2, this.m_LabelPlayer1Name.Top);
             this.Controls.Add(this.m_LabelPlayer2Name);
 
-            this.m_Score2.Text = "0";
+            this.m_Score2.Text = GamePlay.SecondPlayerScore.ToString();
             this.m_Score2.AutoSize = true;
             this.m_Score2.Location = new Point(this.m_LabelPlayer2Name.Right, this.m_LabelPlayer1Name.Top);
             this.Controls.Add(this.m_Score2);
@@ -119,35 +125,37 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             //Switch bold player label
             
             m_GamePlay.GamingMove(m_WhosTurn, pressedButtonIndex[0], pressedButtonIndex[1]);
-            GameOver();
-            turnChangedHandler(sender, e);
+
+            if(!GameOver())
+                turnChangedHandler(sender, e);
         }
 
-        public void GameOver()
+        public Boolean GameOver()
         {
             if (this.m_Board.IsGameOver == true)
             {
                 if(this.m_Board.IsWinner == true)
                 {
                     this.gameOverWin();
+                    return true;
                 }
                 else
                 {
                     this.gameOverTie();
+                    return true;
                 }
-                if (this.m_Board.IsBoardFull() == true)
-                {
-                    if (this.m_Board.IsWinner == true)
-                    {
 
-                    }
-                    this.gameOverTie();
-                }
-                else
-                {
-                    this.gameOverWin();
-                }
             }
+            else if (this.m_Board.IsBoardFull() == true)
+            {
+                this.gameOverTie();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            return false;
            
         }
 
@@ -157,11 +165,20 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             string tempWinner;
             if(m_GamePlay.WhosTurn == GamePlay.eWhosTurn.Player1)
             {
-                tempWinner = this.m_LabelPlayer1Name.Text;
+                tempWinner = this.m_PlayerOneName;
+                GamePlay.FirstPlayerScore++;
             }
             else
             {
-                tempWinner = this.m_LabelPlayer2Name.Text;
+                tempWinner = this.m_PlayerTwoName;
+                if(m_GamePlay.WhosTurn == GamePlay.eWhosTurn.Computer)
+                {
+                    GamePlay.SecondPlayerScore++;
+                }
+                else
+                {
+                    GamePlay.SecondPlayerScore++;
+                }
             }
 
             string output = string.Format("The winner is {0}!" + Environment.NewLine + "Would you like to play another round?", tempWinner);
@@ -170,18 +187,21 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
             if(gameOverDialogResult == DialogResult.Yes)
             {
                 //Play again, with the same settings
+
                 this.Dispose();
-                new BoardForm(m_BoardSize, m_LabelPlayer1Name.Text, m_PlayingVersus, m_LabelPlayer2Name.Text).Show();
+                new BoardForm(m_BoardSize, m_PlayerOneName, m_PlayingVersus, m_PlayerTwoName);
             }
             else
             {
                 //Open game settings menu
                 this.Dispose();
+                this.Parent = null;
+                
                 new FormGameSettings().ShowDialog();
+                
                 //new GameSettingsForm().ShowDialog();
             }
         }
-
         private void gameOverTie()
         {
             string output = string.Format("Tie!" + Environment.NewLine + "Would you like to play another round?");
@@ -193,7 +213,7 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
                 //this.Hide();
                 this.Dispose();
                 //this.Close();
-                new BoardForm(m_BoardSize, m_LabelPlayer1Name.Text, m_PlayingVersus, m_LabelPlayer2Name.Text).Show();
+                new BoardForm(m_BoardSize, m_PlayerOneName, m_PlayingVersus, m_PlayerTwoName);
             }
             else
             {
