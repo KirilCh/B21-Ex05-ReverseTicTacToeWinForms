@@ -30,3 +30,5 @@ C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323
 C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21 Ex05 Kiril 323439711 Yonatan 204307672.pdb
 C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21_Ex05_Kiril_323439711_Yonatan_204307672.FormGameSettings.resources
 C:\Users\yonis\Desktop\C# 2\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21_Ex05_Kiril_323439711_Yonatan_204307672.BoardForm.resources
+C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21_Ex05_Kiril_323439711_Yonatan_204307672.BoardForm.resources
+C:\Users\bsinn\Documents\GitHub\B21-Ex05-ReverseTicTacToeWinForms\B21 Ex05 Kiril 323439711 Yonatan 204307672\obj\Debug\B21_Ex05_Kiril_323439711_Yonatan_204307672.FormGameSettings.resources

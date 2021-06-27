@@ -6,19 +6,16 @@ namespace GameLogic
 {
     public class GameMenu
     {
-        private const int s_GameBoardMinSize = 3;
-        private static int s_GameBoardMaxSize = 9;
-        private StringBuilder m_BoardString;
-        private Board m_GameBoard;
-
-        private readonly int r_WhoToPlayAgainst;
+        private static readonly int sr_GameBoardMinSize = 3;
+        private static readonly int sr_GameBoardMaxSize = 9;
         private readonly int r_GameBoardSize;
+        private Board m_GameBoard;
 
         public static int GameBoardMinSize
         {
             get
             {
-                return s_GameBoardMinSize;
+                return sr_GameBoardMinSize;
             }
         }
 
@@ -26,27 +23,13 @@ namespace GameLogic
         {
             get
             {
-                return s_GameBoardMaxSize;
+                return sr_GameBoardMaxSize;
             }
         }
 
         public GameMenu()
         {
-            //r_WhoToPlayAgainst = WhoToPlayAgainst();
-
-            //r_WhoToPlayAgainst = This comes from m_CheckBoxPlayer2_StateChanged, if its checked its vs Player, else its vs Computer
-            //r_GameBoardSize = GetBoardSize();
-            m_GameBoard = new Board(r_GameBoardSize);
-
-            //Ex02.ConsoleUtils.Screen.Clear();
-            //InitDrawBoard(m_GameBoard.SizeOfBoard);
-
-            // Start game according to game mode
-            //GamePlay gamePlay = new GamePlay(m_GameBoard, /*this,*/ m_WhoToPlayAgainst);
-            while (true)
-            {
-                //PlayAgainOrExit();
-            }
+            this.m_GameBoard = new Board(this.r_GameBoardSize);
         }
 
         public void ScoreResult(string i_PlayerOne, string i_PlayerTwo, int i_PlayerOneScore, int i_PlayerTwoScore)

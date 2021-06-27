@@ -27,6 +27,7 @@ namespace GameLogic
         private Board.eIcons m_Icon;
         private Board m_GameBoard;
         private GameMenu m_GameMenu;
+        private Random m_Random = new Random();
 
         public static int FirstPlayerScore
         {
@@ -106,22 +107,18 @@ namespace GameLogic
             }
         }
 
-        public GamePlay(Board i_GameBoard/*, GameMenu i_GameMenu*/, int i_VsSelection)
+        public GamePlay(Board i_GameBoard, int i_VsSelection)
         {
             this.m_GameBoard = i_GameBoard;
-            //this.m_GameMenu = i_GameMenu;
             this.m_PlayingVersus = (ePlayingVersus)i_VsSelection;
             this.m_WhosTurn = eWhosTurn.Player1;
             this.m_Icon = Board.eIcons.X;
-
-            //StartGame();
         }
 
         public void GamingMove(eWhosTurn i_whosTurn, int i_rowIndex, int i_colIndex)
         {
-            //int selectedRow = 0, selectedColumn = 0;
             Board.eIcons iconToPlace;
-            if(i_whosTurn == eWhosTurn.Player1)
+            if (i_whosTurn == eWhosTurn.Player1)
             {
                 iconToPlace = Board.eIcons.X;
             }
@@ -132,31 +129,31 @@ namespace GameLogic
 
             if (this.m_GameBoard.IsBoardFull() == false && this.m_GameBoard.IsGameOver == false)
             {
-                m_GameBoard.MakeMove(i_rowIndex, i_colIndex, iconToPlace);
-                SwapPlayersTurn();
-                SwapCurrentIcon();
+                this.m_GameBoard.MakeMove(i_rowIndex, i_colIndex, iconToPlace);
+                this.SwapPlayersTurn();
+                this.SwapCurrentIcon();
             }
         }
 
-        public int[] ComputersMove() //Computer sometimes doesnt recognize that space is taken
+        public int[] ComputersMove()
         {
             int selectedRow = 0, selectedColumn = 0;
             int[] o_computersMove = new int[2];
 
             if (this.m_GameBoard.IsBoardFull() == false && this.m_GameBoard.IsGameOver == false)
             {
-                ComputerPlay(ref selectedRow, ref selectedColumn);
+                this.ComputerPlay(ref selectedRow, ref selectedColumn);
 
-                while (m_GameBoard.MakeMove(selectedRow, selectedColumn, this.m_Icon) != true)
+                while (this.m_GameBoard.MakeMove(selectedRow, selectedColumn, this.m_Icon) != true)
                 {
-                    ComputerPlay(ref selectedRow, ref selectedColumn);
+                    this.ComputerPlay(ref selectedRow, ref selectedColumn);
                 }
 
                 o_computersMove[0] = selectedRow;
                 o_computersMove[1] = selectedColumn;
 
-                SwapPlayersTurn();
-                SwapCurrentIcon();
+                this.SwapPlayersTurn();
+                this.SwapCurrentIcon();
             }
 
             return o_computersMove;
@@ -170,48 +167,27 @@ namespace GameLogic
             {
                 if (this.m_WhosTurn.ToString().Equals(ePlayingVersus.Computer.ToString()))
                 {
-                    ComputerPlay(ref selectedRow, ref selectedColumn);
-                }
-                else
-                {
-                    //this.m_GameMenu.PrintWhosTurn(this.m_WhosTurn.ToString());
-                    //selectedRow = this.m_GameMenu.GetRow(this.m_GameBoard.SizeOfBoard);
-                    //selectedColumn = this.m_GameMenu.GetCol(this.m_GameBoard.SizeOfBoard);
+                    this.ComputerPlay(ref selectedRow, ref selectedColumn);
                 }
 
-                if (m_GameBoard.MakeMove(selectedRow - 1, selectedColumn - 1, this.m_Icon) == true)
+                if (this.m_GameBoard.MakeMove(selectedRow - 1, selectedColumn - 1, this.m_Icon) == true)
                 {
-                    //this.m_GameMenu.Draw(this.m_GameBoard, selectedRow, selectedColumn, this.m_Icon);
-                    SwapPlayersTurn();
-                    SwapCurrentIcon();
-                }
-                else if (this.m_GameBoard.IsLocationEmpty(selectedRow - 1, selectedColumn - 1) == false)
-                {
-                    //this.m_GameMenu.CellIsTaken();
+                    this.SwapPlayersTurn();
+                    this.SwapCurrentIcon();
                 }
             }
 
             if (this.m_GameBoard.IsGameOver == true)
             {
-                //this.m_GameMenu.PrintWinner(this.m_WhosTurn.ToString());
-                UpdateScore(this.m_WhosTurn);
-                ProvideUiWithScore();
-
-            }
-            else if (this.m_GameBoard.IsBoardFull() == true)
-            {
-                //this.m_GameMenu.PrintNoWinner();
+                this.UpdateScore(this.m_WhosTurn);
+                this.ProvideUiWithScore();
             }
         }
 
-
-        // $G$ NTT-007 (-10) There's no need to re-instantiate the Random instance each time it is used.
         protected void ComputerPlay(ref int i_SelectedRow, ref int i_SelectedColumn) // Computer makes a random move
         {
-            Random rand = new Random();
-
-            i_SelectedRow = rand.Next(0, this.m_GameBoard.SizeOfBoard);
-            i_SelectedColumn = rand.Next(0, this.m_GameBoard.SizeOfBoard);
+            i_SelectedRow = this.m_Random.Next(0, this.m_GameBoard.SizeOfBoard);
+            i_SelectedColumn = this.m_Random.Next(0, this.m_GameBoard.SizeOfBoard);
         }
 
         protected void SwapPlayersTurn()
@@ -322,4 +298,3 @@ namespace GameLogic
         }
     }
 }
-

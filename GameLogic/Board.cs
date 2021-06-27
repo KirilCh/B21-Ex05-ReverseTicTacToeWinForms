@@ -6,16 +6,12 @@ namespace GameLogic
 {
     public class Board
     {
+        private readonly int[,] r_GameBoard;
         private static int s_TurnCount = 0;
-
-        // $G$ CSS-999 (-3) this member should be readonly
-        private int[,] m_GameBoard;
-
-
 
         private int m_SizeOfBoard;
         private bool m_IsGameOver;
-        private bool m_isThereWinner = false;
+        private bool m_IsThereWinner = false;
 
         public enum eIcons
         {
@@ -54,19 +50,19 @@ namespace GameLogic
         {
             get
             {
-                return this.m_isThereWinner;
+                return this.m_IsThereWinner;
             }
 
             set
             {
-                this.m_isThereWinner = value;
+                this.m_IsThereWinner = value;
             }
         }
 
         public Board(int i_BoardSize)
         {
             this.m_SizeOfBoard = i_BoardSize;
-            this.m_GameBoard = new int[this.m_SizeOfBoard, this.m_SizeOfBoard]; // 2D array to contain the board for the game
+            this.r_GameBoard = new int[this.m_SizeOfBoard, this.m_SizeOfBoard]; // 2D array to contain the board for the game
             this.m_IsGameOver = false;
         }
 
@@ -74,9 +70,9 @@ namespace GameLogic
         {
             bool o_validMove = false;
 
-            if (IsLocationEmpty(i_PositionRow, i_PositionColumn))
+            if (this.isLocationEmpty(i_PositionRow, i_PositionColumn))
             {
-                this.m_GameBoard[i_PositionRow, i_PositionColumn] = (int)i_Icon;
+                this.r_GameBoard[i_PositionRow, i_PositionColumn] = (int)i_Icon;
                 o_validMove = true;
                 s_TurnCount++;
 
@@ -84,7 +80,7 @@ namespace GameLogic
                 // Provide with the latest move made (the x,y location)
                 if (s_TurnCount >= ((this.m_SizeOfBoard * 2) - 1))
                 {
-                    CheckForWinStreak(i_PositionRow, i_PositionColumn);
+                    this.checkForWinStreak(i_PositionRow, i_PositionColumn);
                 }
             }
 
@@ -92,11 +88,11 @@ namespace GameLogic
         }
 
         // Check if picked square is available to make a move at
-        public bool IsLocationEmpty(int i_PositionRow, int i_PositionColumn)
+        private bool isLocationEmpty(int i_PositionRow, int i_PositionColumn)
         {
             bool o_isPositionAvailable = false;
 
-            if (this.m_GameBoard[i_PositionRow, i_PositionColumn] == (int)eIcons.Empty)
+            if (this.r_GameBoard[i_PositionRow, i_PositionColumn] == (int)eIcons.Empty)
             {
                 o_isPositionAvailable = true;
             }
@@ -105,38 +101,38 @@ namespace GameLogic
         }
 
         // Function to check board for a winner, win streak is of board size length (Column, Row, Diagonal)
-        public void CheckForWinStreak(int i_PositionRow, int i_PositionColumn)
+        private void checkForWinStreak(int i_PositionRow, int i_PositionColumn)
         {
-            if (CheckForRowStreak(i_PositionRow, i_PositionColumn))
+            if (this.checkForRowStreak(i_PositionRow, i_PositionColumn))
             {
                 this.IsGameOver = true;
-                this.m_isThereWinner = true;
+                this.m_IsThereWinner = true;
             }
-            else if (CheckForColumnStreak(i_PositionRow, i_PositionColumn))
+            else if (this.checkForColumnStreak(i_PositionRow, i_PositionColumn))
             {
                 this.IsGameOver = true;
-                this.m_isThereWinner = true;
+                this.m_IsThereWinner = true;
             }
             else if (i_PositionRow == 0 || i_PositionRow - 1 == (this.m_SizeOfBoard - 1) || i_PositionColumn == 0 ||
                 i_PositionColumn - 1 == (this.m_SizeOfBoard - 1) || i_PositionRow == i_PositionColumn)
             {
-                if (CheckForDiagonalStreak() || CheckForReverseDiagonalStreak())
+                if (this.checkForDiagonalStreak() || this.checkForReverseDiagonalStreak())
                 {
                     this.IsGameOver = true;
-                    this.m_isThereWinner = true;
+                    this.m_IsThereWinner = true;
                 }
             }
         }
 
         // Function to go over all rows and check if theres a winning (losing, in this case) streak
-        public bool CheckForRowStreak(int i_PositionRow, int i_PositionColumn)
+        private bool checkForRowStreak(int i_PositionRow, int i_PositionColumn)
         {
             bool o_rowStreak = true;
-            int cellIcon = this.m_GameBoard[i_PositionRow, i_PositionColumn];
+            int cellIcon = this.r_GameBoard[i_PositionRow, i_PositionColumn];
 
             for (int index = 0; index < this.m_SizeOfBoard; index++)
             {
-                if (this.m_GameBoard[i_PositionRow, index] != cellIcon)
+                if (this.r_GameBoard[i_PositionRow, index] != cellIcon)
                 {
                     o_rowStreak = false;
                     break;
@@ -147,14 +143,14 @@ namespace GameLogic
         }
 
         // Function to go over all columns and check if theres a winning (losing, in this case) streak
-        public bool CheckForColumnStreak(int i_PositionRow, int i_PositionColumn)
+        private bool checkForColumnStreak(int i_PositionRow, int i_PositionColumn)
         {
             bool o_columnStreak = true;
-            int cellIcon = this.m_GameBoard[i_PositionRow, i_PositionColumn];
+            int cellIcon = this.r_GameBoard[i_PositionRow, i_PositionColumn];
 
             for (int index = 0; index < this.m_SizeOfBoard; index++)
             {
-                if (this.m_GameBoard[index, i_PositionColumn] != cellIcon)
+                if (this.r_GameBoard[index, i_PositionColumn] != cellIcon)
                 {
                     o_columnStreak = false;
                     break;
@@ -165,16 +161,16 @@ namespace GameLogic
         }
 
         // Function to go over diagonal and check if theres a winning (losing, in this case) streak
-        public bool CheckForDiagonalStreak()
+        private bool checkForDiagonalStreak()
         {
             bool o_diagonalStreak = true;
-            int cellIcon = this.m_GameBoard[0, 0];
+            int cellIcon = this.r_GameBoard[0, 0];
 
             if (cellIcon != 0)
             {
                 for (int diagonalIndex = 1; diagonalIndex < this.m_SizeOfBoard; diagonalIndex++)
                 {
-                    if (cellIcon != this.m_GameBoard[diagonalIndex, diagonalIndex])
+                    if (cellIcon != this.r_GameBoard[diagonalIndex, diagonalIndex])
                     {
                         o_diagonalStreak = false;
                         break;
@@ -190,16 +186,16 @@ namespace GameLogic
         }
 
         // Function to go over reverse diagonal and check if theres a winning (losing, in this case) streak
-        public bool CheckForReverseDiagonalStreak()
+        private bool checkForReverseDiagonalStreak()
         {
             bool o_diagonalStreak = true;
-            int cellIcon = this.m_GameBoard[0, this.m_SizeOfBoard - 1];
+            int cellIcon = this.r_GameBoard[0, this.m_SizeOfBoard - 1];
 
             if (cellIcon != 0)
             {
                 for (int indexRow = 0, indexColumn = this.m_SizeOfBoard - 1; indexRow < this.m_SizeOfBoard; indexRow++, indexColumn--)
                 {
-                    if (cellIcon != this.m_GameBoard[indexRow, indexColumn])
+                    if (cellIcon != this.r_GameBoard[indexRow, indexColumn])
                     {
                         o_diagonalStreak = false;
                         break;
@@ -223,7 +219,7 @@ namespace GameLogic
             {
                 for (int indexColumn = 0; indexColumn < this.m_SizeOfBoard; indexColumn++)
                 {
-                    if (this.m_GameBoard[indexRow, indexColumn] == (int)eIcons.Empty)
+                    if (this.r_GameBoard[indexRow, indexColumn] == (int)eIcons.Empty)
                     {
                         o_isFull = false;
                         break;
