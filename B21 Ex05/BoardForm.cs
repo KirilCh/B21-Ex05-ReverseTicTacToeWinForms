@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using GameLogic;
 
-namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
+namespace B21_Ex05
 {
     public partial class BoardForm : Form
     {
@@ -132,36 +132,35 @@ namespace B21_Ex05_Kiril_323439711_Yonatan_204307672
 
         private bool gameOver()
         {
-            bool o_gameOver = false;
+            bool o_isGameOver = false;
             if (this.m_Board.IsGameOver == true)
             {
                 if (this.m_Board.IsWinner == true)
                 {
                     this.gameOverWin();
-                    o_gameOver = true;
+                    o_isGameOver = true;
                 }
                 else
                 {
                     this.gameOverTie();
-                    o_gameOver = true;
+                    o_isGameOver = true;
                 }
             }
             else if (this.m_Board.IsBoardFull() == true)
             {
                 this.gameOverTie();
-                o_gameOver = true;
+                o_isGameOver = true;
             }
             else
             {
-                o_gameOver = false;
+                o_isGameOver = false;
             }
 
-            return o_gameOver;
+            return o_isGameOver;
         }
 
         private void gameOverWin()
         {
-            // Should receive the winner as an enum/string
             string tempWinner;
             if (this.m_GamePlay.WhosTurn == GamePlay.eWhosTurn.Player1)
             {
